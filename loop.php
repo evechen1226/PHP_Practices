@@ -11,8 +11,8 @@ for($i=1;$i<=100;$i=$i+1){
   echo '$sum+$i的結果是' .($sum + $i) ;
   echo '<br>';
 
-  echo ' ($sum + $i + 2 ) ' .($sum + $i + 2) ;
-  echo '<br>';
+  //echo ' ($sum + $i + 2 ) ' .($sum + $i + 2) ;
+  //echo '<br>';
 
   echo $sum . '←只有 $sum ';
   echo '<br>';
@@ -20,6 +20,11 @@ for($i=1;$i<=100;$i=$i+1){
 // $sum=$sum+$i;        →→→詳細寫法
   $sum +=$i;
 
+//取餘數千萬不要用 " / " 會有浮點運算的問題
+  if ($sum % 2 != 0){
+    echo '這是奇數' .$sum;
+    echo '<br>';
+  }
 
 
 }
