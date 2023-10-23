@@ -1,3 +1,12 @@
+<head>
+    <style>
+        .font{
+            font-size: larger;
+            color: red;
+        }
+    </style>
+</head>
+
 <h2>字串取代</h2>
 <li>將”aaddw1123”改成”*********”</li>
 <p>
@@ -34,11 +43,13 @@ echo join(' ',$a);
 <li>將” The reason why a great man is great is that he resolves to be a great man”只取前十字成為” The reason…”</li>
 <?php
 $s="The reason why a great man is great is that he resolves to be a great man";
-echo mb_substr($s,0,10) . "...";
+echo mb_substr($s,0,10) . "...<br>";
 
 // 中文字要使用mb_substr, 一個中文字等於3個字元
-$cs="給定一個句子，將指定的關鍵字放大";
-echo mb_substr($cs,0,3);
+$cs="今天天氣真的是不太好的樣子";
+echo mb_substr($cs,0,3) . "...<br>";
+$cs="今天天氣真的是不太好的樣子";
+echo mb_substr($cs,0,6) . "...<br>";
 
 
 ?>
@@ -48,10 +59,29 @@ echo mb_substr($cs,0,3);
 <li>請將上句中的 “程式設計” 放大字型或變色.</li>
 
 <?php
-$s="學會PHP網頁程式設計，薪水會加倍，工作會好找";
+$key="程式設計";
 
-echo mb_strpos($s,"程");
-echo mb_substr($s,7,4);
+
+$str="學會PHP網頁程式設計，薪水會加倍，工作會好找";
+
+echo str_replace($key,"<span class=font>$key</span>",$str);
+
+
+?>
+
+<br>
+<!-- PHP源自於 C 語言，最小的單位為 chr 字元，在C語言裡，所有的字串都是陣列組成。 -->
+<?php
+$str="學會PHP網頁程式設計，薪水會加倍，工作會好找";
+for($i=0;$i<mb_strlen($str);$i=$i+3){
+    //echo mb_substr($str,$i,1);
+    echo $str[$i];
+    echo $str[$i+1];
+    echo $str[$i+2];
+    echo "<br>";
+    
+}
+
 
 
 ?>
