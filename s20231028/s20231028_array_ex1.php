@@ -43,7 +43,8 @@ foreach($nine as $idx => $value){
 echo "</table>";
 ?>
 
-<!-- <table>
+<!--假程式碼
+     <table>
 if(xxxx){  
     <tr>
         <td></td>
