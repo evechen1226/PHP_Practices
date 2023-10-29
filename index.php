@@ -2,32 +2,48 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
 </head>
 
 <body>
-    hello WORLD !~~~
-    <?php
-    define('age', 100);
-    $age = 15040;
-    $age = 2005050;
-    echo $age;
-    echo age;
+  <h2>GET</h2>
+  <form action="?" method="get">
+    <div>
+      <label for="acc">帳號</label>
+      <input type="text" name="acc" id="acc">
+    </div>
 
-    $name = 'abc';
-    echo $name;
+    <div>
+      <label for="pw">密碼</label>
+      <input type="password" name="pw" id="pw">
+    </div>
 
-    $a = 10;
-    $b = 50;
-    $tmp = $a;
-    $a = $b;
-    $b = $tmp;
-    echo $a;
-    echo $b;
+    <div>
+      <input type="submit" value="送出">
+      <input type="reset" value="重置">
+    </div>
+<h2>POST</h2>
+  </form>
 
-    ?>
+  <form action="?" method="post">
+    <div>
+      <label for="acc">帳號</label>
+      <input type="text" name="acc" id="acc">
+    </div>
+
+    <div>
+      <label for="pw">密碼</label>
+      <input type="password" name="pw" id="pw">
+    </div>
+
+    <div>
+      <input type="submit" value="送出">
+      <input type="reset" value="重置">
+    </div>
+
+  </form>
 </body>
 
 </html>
