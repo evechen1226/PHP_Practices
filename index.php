@@ -24,8 +24,9 @@
       <input type="submit" value="送出">
       <input type="reset" value="重置">
     </div>
-    <h2>POST</h2>
   </form>
+  <h2>POST</h2>
+
 
   <form action="?" method="post">
     <div>
@@ -45,7 +46,7 @@
 
   </form>
   <h2>檔案上傳</h2>
-  </form>
+ 
 
   <form action="?" method="post">
     <div>
