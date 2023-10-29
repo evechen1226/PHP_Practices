@@ -24,10 +24,14 @@ if (!empty($_GET)) {
     $weight = floatval($weight);
     $height = floatval($height);
 
-    $bmi = round( $weight / ($height * $height), 2);
+    if ($height > 0) {
+      $bmi = round($weight / ($height * $height), 2);
 
-    header("location:./s20231027_bmi.php?w=$weight&h=$height&bmi=$bmi");
-  }else{
+      header("location:./s20231027_bmi.php?w=$weight&h=$height&bmi=$bmi");
+    } else {
+      header("location:./s20231027_bmi.php?m=請輸入合理身高或體重資訊");
+    }
+  } else {
     header("location:./s20231027_bmi.php?m=請輸入合理身高或體重資訊");
   }
 
