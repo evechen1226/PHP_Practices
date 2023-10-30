@@ -1,23 +1,26 @@
+<?php include_once "session.php"; ?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css">
 
     <title>會員登入</title>
     <link rel="stylesheet" href="style.css">
 
-    
+
 </head>
 <?php
+
 include_once("header.php");
 ?>
+
 <body>
     <div class='login-block'>
         <?php
-        session_start();
+
         if (isset($_SESSION['error'])) {
             echo "<span style='color:red'>" . $_SESSION['error'] . "</span>";
             unset($_SESSION['error']);

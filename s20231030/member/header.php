@@ -1,6 +1,18 @@
 <header>
-        <a href="index.php">HOME</a>
-        <a href="login.php">登入</a>
-        <a href="logout.php">登出</a>
+
+    <a href="index.php">HOME</a>
+    <?php
+    if (isset($_SESSION['login'])) {
+    ?>
         <a href="member.php">會員中心</a>
-    </header>
+        <a href="logout.php">登出</a>
+    <?php
+    } else {
+    ?>
+
+        <a href="login.php">登入</a>
+
+    <?php
+    }
+    ?>
+</header>

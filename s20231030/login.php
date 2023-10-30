@@ -46,13 +46,13 @@
     <div class='login-block'>
         <?php
         session_start();
-        if (isset($$_COOKIE['error'])) {
-            echo "<span style='color:red'>" . $$_COOKIE['error'] . "</span>";
-            unset($$_COOKIE['error']);
+        if (isset($_COOKIE['error'])) {
+            echo "<span style='color:red'>" . $_COOKIE['error'] . "</span>";
+            unset($_COOKIE['error']);
         }
 
-        if (isset($$_COOKIE['login']) && !empty($$_COOKIE['login'])) {
-            echo $$_COOKIE['login'] . "歡迎你";
+        if (isset($_COOKIE['login']) && !empty($_COOKIE['login'])) {
+            echo $_COOKIE['login'] . "歡迎你";
             echo "<a href ='./logout.php'";
         } else {
         ?>

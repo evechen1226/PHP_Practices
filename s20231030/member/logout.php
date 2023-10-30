@@ -1,5 +1,5 @@
 <?php 
-session_start();
+include_once "session.php";
 
 unset($_SESSION['login']);
 
