@@ -1,0 +1,211 @@
+SELECT * FROM `students`,`dept` where `students`.`dept`=`dept`.`id`
+
+------------------------------------------------------------
+SELECT `students`.*,`dept`.`name` as '科別' FROM `students`,`dept` where `students`.`dept`=`dept`.`id`;
+
+---------------------------------------------------------
+SELECT `students`.`id`,
+	   `students`.`school_num`,
+       `students`.`name`,
+       `students`.`birthday`,
+       `students`.`uni_id`,
+       `students`.`addr`,
+       `students`.`parents` 
+FROM `students`,
+	 `dept`,
+     `graduate_school`,
+     `status`
+------------------------------------------------------------------
+
+SELECT `students`.`id`,
+	   `students`.`school_num`,
+       `students`.`name`,
+       `students`.`birthday`,
+       `students`.`uni_id`,
+       `students`.`addr`,
+       `students`.`parents`,
+       `dept`.`name` as '科別',
+       `graduate_school`.`name` as '畢業學校',
+       `status`.`status` as '畢業狀態'
+FROM `students`,
+	 `dept`,
+     `graduate_school`,
+     `status`
+where `students`.`dept`=`dept`.`id` && 
+	  `students`.`graduate_at`=`graduate_school`.`id`  &&
+      `students`.`status_code`=`status`.`code`
+
+-------------------------------------------------
+
+SELECT `class_code` ,count(*) as '人數' FROM `class_student` group by `class_code`
+
+
+----------------------------------------------------
+SELECT `class_code` ,
+        `classes`.`name` as '班級名稱',
+        `classes`.`tutor` as '班導師',
+        count(*) as '人數' 
+FROM `class_student`,`classes` 
+WHERE `class_student`.`class_code`=`classes`.`code`
+group by `class_code`
+
+----------------------------------------------------
+SELECT `class_code` ,
+        `classes`.`name` as '班級名稱',
+        `classes`.`tutor` as '班導師',
+        count(*) as '人數' 
+FROM `class_student`,`classes` 
+WHERE `class_student`.`class_code`=`classes`.`code`
+group by `class_code`
+order by count(*)
+
+-----------------------------------------------------
+SELECT `class_code` ,
+        `classes`.`name` as '班級名稱',
+        `classes`.`tutor` as '班導師',
+        count(*) as '人數' 
+FROM `class_student`,`classes` 
+WHERE `class_student`.`class_code`=`classes`.`code`
+group by `class_code`
+order by count(*)
+limit 5
+
+------------------------------------------------------
+
+SELECT `class_code` ,
+        `classes`.`name` as '班級名稱',
+        `classes`.`tutor` as '班導師',
+        count(*) as '人數' ,
+        count(*)/479 as '總人數佔比'
+        
+FROM `class_student`,`classes` 
+WHERE `class_student`.`class_code`=`classes`.`code`
+group by `class_code`
+order by count(*)
+SELECT `class_code` ,
+        `classes`.`name` as '班級名稱',
+        `classes`.`tutor` as '班導師',
+        count(*) as '人數' ,
+        concat(round((count(*)/479)*100),'%') as '總人數佔比'
+        
+FROM `class_student`,`classes` 
+WHERE `class_student`.`class_code`=`classes`.`code`
+group by `class_code`
+order by count(*)
+-----------------------------------------------
+
+SELECT `dept`.`name`, count(*) as '人數'  FROM `students`,`dept` WHERE `students`.`dept`=`dept`.`dept_id` group by `students`.`dept`
+
+----------------------------------------
+
+SELECT * 
+FROM `students`,`class_student`,`dept` 
+WHERE `students`.`school_num`=`class_student`.`school_num`  && 
+	  `students`.`dept`=`dept`.`dept_id`
+
+-------------------------------------------------
+SELECT `students`.`dept` as '科別',
+	   count(*) as "人數"
+
+FROM `students`,`class_student`,`dept` 
+WHERE `students`.`school_num`=`class_student`.`school_num`  && 
+	  `students`.`dept`=`dept`.`dept_id`
+GROUP by `students`.`dept`
+
+----------------------------------------------------------------
+SELECT `class_student`.`class_code` as '班級',
+	   `students`.`dept` as '科別',
+	   count(*) as "人數"
+
+FROM `students`,`class_student`,`dept` 
+WHERE `students`.`school_num`=`class_student`.`school_num`  && 
+	  `students`.`dept`=`dept`.`dept_id`
+GROUP by `class_student`.`class_code`,
+         `students`.`dept`
+
+
+-------------------------------------------------------
+SELECT `class_student`.`class_code` as '班級',
+	   `students`.`dept` as '科別',
+	   count(*) as "人數"
+
+FROM `students`,`class_student`,`dept` 
+WHERE `students`.`school_num`=`class_student`.`school_num`  && 
+	  `students`.`dept`=`dept`.`dept_id`
+GROUP by 
+         `students`.`dept`,
+         `class_student`.`class_code`
+
+--------------------------------------------------
+SELECT `class_student`.`class_code` as '班級',
+	   `dept`.`name` as '科別',
+	   count(*) as "人數"
+
+FROM `students`,`class_student`,`dept` 
+WHERE `students`.`school_num`=`class_student`.`school_num`  && 
+	  `students`.`dept`=`dept`.`dept_id`
+GROUP by `class_student`.`class_code`,
+         `students`.`dept`
+
+-------------------------------------------------------
+SELECT `classes`.`name` as '班級',
+	   `dept`.`name` as '科別',
+	   count(*) as "人數"
+
+FROM `students`,`class_student`,`dept` ,`classes`
+
+WHERE `students`.`school_num`=`class_student`.`school_num`  && 
+	  `students`.`dept`=`dept`.`dept_id` && 
+      `class_student`.`class_code`=`classes`.`code`
+      
+GROUP by `class_student`.`class_code`,
+         `students`.`dept`
+
+-------------------------------------------------------要在 dept 增加資訊工程科，因為老師有修改 dept 的 id 為 dept_id，所以會有問題，要記得改對應的條件
+SELECT `dept`.`name`,count(`id`) 
+from `dept`
+left join `students` on `students`.`dept`=`dept`.`dept_id`
+group by `students`.`dept`
+
+---------------------------------------------------
+SELECT `dept`.`name`,count(`id`) 
+from `students`
+right join `dept` on `students`.`dept`=`dept`.`dept_id`
+group by `students`.`dept`
+
+
+----------------------------------------------------分數平均，校平均
+SELECT `class_student`.`class_code`,AVG(`student_scores`.`score`) as '班平均'
+FROM `class_student`,`student_scores`
+where `class_student`.`school_num`=`student_scores`.`school_num`
+GROUP by `class_student`.`class_code`
+
+----------------------------------------------------------子查詢，顯示姓名、學號、班級
+SELECT `students`.`name`,`students`.`school_num`,`A`.`name` as '班級' 
+FROM `students`,
+	 (select `class_student`.`school_num`,`classes`.`name` from `class_student`,`classes` where `class_student`.`class_code`=`classes`.`code`)A
+where `students`.`school_num`=`A`.`school_num`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+         
+
+
+
+
+
+
+
+
+
