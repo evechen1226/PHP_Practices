@@ -210,12 +210,41 @@ FROM `student_scores` ,`students`
 WHERE `student_scores`.`school_num` =`students`.`school_num` && `students`.`graduate_at`=12;
 
 
+------------------------------------
+
+SELECT `students`.`name`,`student_scores`.`score` FROM `students`,`student_scores` 
+WHERE `student_scores`.`school_num`=`students`.`school_num`
+
+SELECT `students`.`name`,`student_scores`.`score` 
+FROM `students`,`student_scores` ,`class_student`
+WHERE `student_scores`.`school_num`=`students`.`school_num` &&
+	  `students`.`school_num`=`class_student`.`school_num` &&
+      `class_student`.`class_code`='102'
+ORDER BY `student_scores`.`score` DESC
 
 
-
+SELECT `student_scores`.`score` 
+FROM `students`,`student_scores` ,`class_student`
+WHERE `student_scores`.`school_num`=`students`.`school_num` &&
+	  `students`.`school_num`=`class_student`.`school_num` &&
+      `class_student`.`class_code`='102'
 
          
-
+-----------------------------------------------------------------------
+SELECT 
+    s.name AS '名字',
+    ss.score AS '成績',
+    (SELECT COUNT(DISTINCT score) FROM student_scores WHERE score > ss.score) + 1 AS '名次'
+FROM 
+    students s
+JOIN 
+    class_student cs ON s.school_num = cs.school_num
+JOIN 
+    student_scores ss ON s.school_num = ss.school_num
+WHERE 
+    cs.class_code = '102'
+ORDER BY 
+    ss.score DESC;
 
 
 
