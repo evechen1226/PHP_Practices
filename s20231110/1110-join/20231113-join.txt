@@ -229,8 +229,8 @@ WHERE `student_scores`.`school_num`=`students`.`school_num` &&
 	  `students`.`school_num`=`class_student`.`school_num` &&
       `class_student`.`class_code`='102'
 
-         
------------------------------------------------------------------------
+------------排名次---------------         
+---------------------------------------------------chatGPT
 SELECT 
     s.name AS '名字',
     ss.score AS '成績',
@@ -248,7 +248,7 @@ ORDER BY
 
 
 
----------------------------------------------------
+---------------------------------------------------使用子查詢
 SELECT `A`.`name`,
 	`A`.`score` ,
     (SELECT count(`students`.`name`)
