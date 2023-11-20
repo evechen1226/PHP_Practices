@@ -14,7 +14,7 @@ $sql="select count(*) form users where `acc` = '$acc' && `pw`='$pwd'";
 // exit();
 
 $user = $pdo->query($sql)->fetch();
-if($user['user']==$acc && $user['pwd']==$pwd){
+if($user['acc']==$acc && $user['pwd']==$pwd){
     $_SESSION['user']=$acc;
     header('location:index.php');
 

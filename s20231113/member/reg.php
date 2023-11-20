@@ -16,30 +16,30 @@
 
 <body>
 
-    <div class="container mt-2">
+    <div class="my-container">
             <h2>會員註冊</h2>
     <form action="./add_user.php" method="POST">
-        <div class="mb-3 mt-3">
+        <div class=" ">
             <label for="" class="form-label">帳號</label>
             <input type="text" class="form-control" name="acc" id="acc">
         </div>
-        <div class="mb-3 mt-3">
+        <div class=" ">
             <label for="" class="form-label">密碼</label>
             <input type="password" class="form-control"  name="pwd" id="pwd">
         </div>
-        <div class="mb-3 mt-3">
+        <div class=" ">
             <label for="" class="form-label">姓名</label>
             <input type="text" class="form-control" name="name" id="name">
         </div>
-        <div class="mb-3 mt-3">
+        <div class=" ">
             <label for="mail" class="form-label">電子郵件</label>
             <input type="mail" class="form-control"  name="mail" id="mail">
         </div>
-        <div class="mb-3 mt-3">
+        <div class=" ">
             <label for="" class="form-label">地址</label>
             <input type="text" class="form-control"  name="address" id="address">
         </div>
-        <div class="mb-3 mt-3 d-flex justify-content-evenly" >
+        <div class="  " >
             <input type="submit"  class="btn btn-primary" value="送出">
             <input type="reset" class="btn btn-primary" value="重置">
         </div>
