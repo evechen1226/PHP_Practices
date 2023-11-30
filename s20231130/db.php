@@ -38,10 +38,39 @@ class DB{
             echo "錯誤:沒有指定的資料表名稱";
         }
     }
+
     function count( $where = '', $other = '')
     {
         $sql = "select count(*) from `$this->table` ";
     
+        if (isset($this->table) && !empty($this->table)) {
+    
+            if (is_array($where)) {
+    
+                if (!empty($where)) {
+                    $tmp = $this->a2s($where);
+                    $sql .= " where " . join(" && ", $tmp);
+                }
+            } else {
+                $sql .= " $where";
+            }
+    
+            $sql .= $other;
+            //echo 'all=>'.$sql;
+            $rows = $this->pdo->query($sql)->fetchColumn();
+            return $rows;
+        } else {
+            echo "錯誤:沒有指定的資料表名稱";
+        }
+    }
+
+//A---->AVG、COUNT、MAX、MIN、SUM：裡面的程式碼都相同，只有$sql 資料庫的命令不同
+    function sum( $col,$where = '', $other = '')
+    {
+        //A----↓
+        $sql = "select sum(`col`) from `$this->table` ";   
+        //A----↑
+        
         if (isset($this->table) && !empty($this->table)) {
     
             if (is_array($where)) {
@@ -144,6 +173,10 @@ function dd($array)
 
 $student=new DB('students');
 $rows=$student->count();
+dd($rows);
+
+$Scores=new DB('student_scores');
+$rows=$Scores->sum('score');
 dd($rows);
 
 ?>
