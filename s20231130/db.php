@@ -68,9 +68,9 @@ class DB{
     function sum( $col,$where = '', $other = '')
     {
         //A----↓
-        $sql = "select sum(`col`) from `$this->table` ";   
+        $sql = "select sum(`$col`) from `$this->table` ";   
         //A----↑
-        
+
         if (isset($this->table) && !empty($this->table)) {
     
             if (is_array($where)) {
@@ -91,7 +91,8 @@ class DB{
             echo "錯誤:沒有指定的資料表名稱";
         }
     }
-    
+
+   
     
     function find($id)
     {
